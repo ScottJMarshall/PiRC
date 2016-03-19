@@ -1,0 +1,19 @@
+{
+  "name": "pirc",
+  "version": "1.0.0",
+  "description": "Raspberry Pi based RC Controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SeamusHall/PiRC.git"
+  },
+  "author": "Scott Marshall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SeamusHall/PiRC/issues"
+  },
+  "homepage": "https://github.com/SeamusHall/PiRC#readme"
+}
