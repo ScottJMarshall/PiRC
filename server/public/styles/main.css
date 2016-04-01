@@ -1,0 +1,44 @@
+#wheels {
+    width: 800px;
+    height: 300px;
+    position: relative;
+}
+
+#throttle {
+    width: 100px;
+    text-align: center;
+}
+
+.throttle-direction {
+    border: solid 1px black;
+    height: 100px;
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.throttle-fill {
+    width: 100%;
+}
+
+#throttle-forward {
+}
+
+#throttle-reverse {
+    border-top-width: 0;
+}
+
+.wheel {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    background-color: blue;
+}
+
+#left-wheel {
+    left: 100px;
+}
+
+#right-wheel {
+    right: 100px;
+}
