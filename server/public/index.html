@@ -6,29 +6,45 @@
         <script src="scripts/KeyHandler.js"></script>
         <script src="scripts/TelemetryHandler.js"></script>
         <script src="scripts/Vehicle.js"></script>
-        <link type="text/css" href="styles/main.css" rel="stylesheet"/>
+        <link type="text/css" href="css/main.css" rel="stylesheet"/>
     </head>
     <body>
-        <h2>Wheels</h2>
-        <div id="wheels">
-            <div id="left-wheel" class="wheel">
-
-            </div>
-            <div id="right-wheel" class="wheel">
-
+        <h2>Input</h2>
+        <table id="input">
+            <tr>
+                <td></td>
+                <td class="up border">UP</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="left border">LEFT</td>
+                <td class="down border">DOWN</td>
+                <td class="right border">RIGHT</td>
+            </tr>
+        </table>
+        <div id="throttle-wrapper">
+            <h2>Throttle</h2>
+            <div id="throttle">
+                Forward
+                <div class="throttle-direction" id="throttle-forward">
+                    <div class="throttle-fill"></div>
+                </div>
+                <div class="throttle-direction" id="throttle-reverse">
+                    <div class="throttle-fill"></div>
+                </div>
+                Reverse
             </div>
         </div>
+        <div id="wheels-wrapper">
+            <h2>Wheels</h2>
+            <div id="wheels">
+                <div id="left-wheel" class="wheel">
 
-        <h2>Throttle</h2>
-        <div id="throttle">
-            Forward
-            <div class="throttle-direction" id="throttle-forward">
-                <div class="throttle-fill"></div>
+                </div>
+                <div id="right-wheel" class="wheel">
+
+                </div>
             </div>
-            <div class="throttle-direction" id="throttle-reverse">
-                <div class="throttle-fill"></div>
-            </div>
-            Reverse
         </div>
     </body>
 </html>

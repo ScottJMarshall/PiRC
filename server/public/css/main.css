@@ -1,0 +1,87 @@
+#throttle-wrapper {
+    float: left;
+    margin-right: 100px;
+}
+
+#wheels-wrapper {
+    float: left;
+}
+
+#wheels {
+    width: 800px;
+    height: 300px;
+    position: relative;
+}
+
+.wheel {
+    width: 100px;
+    height: 200px;
+    position: absolute;
+    background-color: blue;
+    transition: 50ms linear;
+    border-radius: 10px;
+}
+
+#left-wheel {
+    left: 100px;
+}
+
+#right-wheel {
+    right: 100px;
+}
+
+#throttle {
+    width: 100px;
+    text-align: center;
+}
+
+.throttle-direction {
+    border: solid 1px black;
+    height: 100px;
+    width: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.throttle-fill {
+    position: absolute;
+    width: 100%;
+    transition: 100ms linear;
+    background-color: green;
+}
+
+#throttle-forward {
+    position: relative;
+}
+
+#throttle-forward .throttle-fill {
+    bottom: 0;
+}
+
+#throttle-reverse {
+    position: relative;
+    border-top-width: 0;
+}
+
+#throttle-reverse .throttle-fill {
+    top: 0;
+}
+
+#input {
+    border-collapse: collapse;
+    margin-bottom: 100px;
+}
+
+#input .border{
+    border: solid 1px black;
+}
+
+#input td{
+    text-align: center;
+    height: 75px;
+    width: 75px;
+}
+
+#input td.active {
+    background-color: red;
+}

@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/SeamusHall/PiRC#readme",
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "sinon": "^1.17.3"
   },
   "dependencies": {
     "express": "^4.13.4",

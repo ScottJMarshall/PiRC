@@ -7,15 +7,17 @@
 function Vehicle() {
     var wheelPosition = 0;
     var throttlePosition = 0;
-    return {
+    var obj = {
         // Takes a decimal value between 100.0 (full forward) and -100.0 (full reverse)
         set throttlePosition(position) {
             throttlePosition = position;
+            handleUpdate();
         },
 
         // Takes a decimal value between -45.0 (left limit) and 45.0 (right limit)
         set wheelPosition(position) {
             wheelPosition = position;
+            handleUpdate();
         },
 
         get throttlePosition() {
@@ -24,6 +26,18 @@ function Vehicle() {
 
         get wheelPosition() {
             return wheelPosition;
+        },
+        
+        onUpdate: function() {
+            
+        }
+    };
+    
+    function handleUpdate() {
+        if (typeof obj.onUpdate === "function") {
+            obj.onUpdate(obj);
         }
     }
+    
+    return obj;
 }

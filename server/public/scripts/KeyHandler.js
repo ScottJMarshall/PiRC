@@ -12,6 +12,12 @@ function KeyHandler() {
     var timeout;
     var socket = io();
 
+    var obj = {
+        onKey: function(pressedKeys) {
+
+        }
+    };
+
     $(document).keydown(function(evt) {
         var code = evt.keyCode;
 
@@ -43,6 +49,10 @@ function KeyHandler() {
     });
 
     function publishKeys() {
+        if (typeof obj.onKey === "function") {
+            obj.onKey(pressedKeys);
+        }
+
         if (!Object.keys(pressedKeys).length) {
             return;
         }
@@ -63,4 +73,6 @@ function KeyHandler() {
             publishKeys();
         }, PUBLISH_INTERVAL);
     }
+
+    return obj;
 }

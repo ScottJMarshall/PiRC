@@ -13,8 +13,8 @@ function TelemetryHandler(vehicle) {
             if (message.state !== "ok")
                 handleException(message);
 
-            vehicle.setThrottlePosition(message.throttlePosition);
-            vehicle.setWheelPosition(message.wheelPosition);
+            vehicle.throttlePosition = message.data.throttle;
+            vehicle.wheelPosition = message.data.steering;
         });
     });
 }
