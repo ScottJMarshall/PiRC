@@ -1,6 +1,10 @@
 module.exports = function InputMapper(controller) {
     return {
         processInput: function(message) {
+            if (!message) {
+                return;
+            }
+
             if (message.up) {
                 controller.accelerate();
             }
