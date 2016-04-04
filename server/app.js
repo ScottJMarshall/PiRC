@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var CarController = require('./controller/CarController.js');
 var InputMapper = require('./controller/InputMapper.js');
-var controller = new CarController();
+var controller = CarController.newDefaultController();
 var mapper = new InputMapper(controller);
 
 var server = http.createServer(app);

@@ -1,17 +1,22 @@
 var SteeringServo = require("./devices/SteeringServo.js");
 var ThrottleServo = require("./devices/ThrottleServo.js");
 
-module.exports = function Controller() {
-    var servos = {
-        steering: new SteeringServo(),
-        throttle: new ThrottleServo()
-    };
+function Controller(servos) {
+    var lastInput = {};
 
-    var lastInput = {
-        steering: false,
-        throttle: false
-    };
+    // Track last input for every servo included in the config
+    for (var servoName in servos) {
+        if (!servos.hasOwnProperty(servoName)) {
+            continue;
+        }
 
+        lastInput[servoName] = false;
+    }
+
+    /**
+     * Ticks each servo towards the center if no control input came in.  The vehicle will decelerate and point
+     * forward in the absence of any input
+     */
     function centerIfNoInput() {
         for (var servoName in servos) {
             if (!servos.hasOwnProperty(servoName)) {
@@ -63,5 +68,18 @@ module.exports = function Controller() {
 
             return result;
         }
+    }
+}
+
+module.exports = {
+    newDefaultController: function() {
+        return this.newController({
+            steering: new SteeringServo(),
+            throttle: new ThrottleServo()
+        });
+    },
+
+    newController: function(servos) {
+        return new Controller(servos);
     }
 };
