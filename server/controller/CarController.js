@@ -4,6 +4,11 @@ var ThrottleServo = require("./devices/ThrottleServo.js");
 function Controller(servos) {
     var lastInput = {};
 
+    // Make sure that we at least having steering and throttle
+    if (!servos.steering || !servos.throttle) {
+        throw "Minimum of throttle and steering controller required";
+    }
+
     // Track last input for every servo included in the config
     for (var servoName in servos) {
         if (!servos.hasOwnProperty(servoName)) {
