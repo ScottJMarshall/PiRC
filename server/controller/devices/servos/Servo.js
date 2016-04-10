@@ -6,7 +6,6 @@ module.exports = function Servo(lowerLimit, upperLimit, rate, position) {
         new PhysicalServoController(position) :
         new VirtualServoController();
 
-    console.log("Creating new servo");
     return {
         position: 0,
         center: function() {
