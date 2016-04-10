@@ -19,4 +19,40 @@ describe("CarController", function() {
             CarController.newController({});
         }).to.throw("Minimum of throttle and steering controller required");
     });
+
+    it("calls clockwise on the steering servo to turn right", function() {
+        controller.right();
+        expect(servos.steering.clockwise.calledOnce).to.be.true;
+    });
+
+    it("calls counterclockwise on the steering servo to turn left", function() {
+        controller.left();
+        expect(servos.steering.counterclockwise.calledOnce).to.be.true;
+    });
+
+    it("calls clockwise on the throttle servo to accelerate", function() {
+        controller.accelerate();
+        expect(servos.throttle.clockwise.calledOnce).to.be.true;
+    });
+
+    it("calls counterclockwise on the throttle servo to decelerate", function() {
+        controller.decelerate();
+        expect(servos.throttle.counterclockwise.calledOnce).to.be.true;
+    });
+
+    it("centers all servos that have had no input", function() {
+        controller.accelerate();
+        controller.tick();
+        expect(servos.throttle.center.calledOnce).to.be.false;
+        expect(servos.steering.center.calledOnce).to.be.true;
+    });
+
+    it("provides position data for all servos", function() {
+        servos.throttle.position = 10;
+        servos.steering.position = 5;
+
+        var positions = controller.getTelemetry();
+        expect(positions.throttle).to.equal(10);
+        expect(positions.steering).to.equal(5);
+    })
 });
