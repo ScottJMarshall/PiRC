@@ -1,22 +1,21 @@
 var config = require("../../../config.js");
 var PhysicalServoController = require("./PhysicalServoController.js");
 var VirtualServoController = require("./VirtualServoController.js");
-module.exports = function Servo(lowerLimit, upperLimit, rate, position) {
-    var controller = (config.environment === "prod") ?
-        new PhysicalServoController(position) :
-        new VirtualServoController();
 
+function Servo(controller, lowerLimit, upperLimit, rate) {
     return {
         position: 0,
         center: function() {
-            if (this.position > 0) {
-                this.position -= rate;
-            } else if (this.position < 0) {
-                this.position += rate;
-            }
+            var tempRate = rate;
 
             if (Math.abs(this.position) < rate) {
-                this.position = 0;
+                tempRate = this.position;
+            }
+
+            if (this.position > 0) {
+                this.position -= tempRate;
+            } else if (this.position < 0) {
+                this.position += tempRate;
             }
         },
         clockwise: function() {
@@ -32,5 +31,19 @@ module.exports = function Servo(lowerLimit, upperLimit, rate, position) {
             }
 
         }
+    }
+}
+
+module.exports = {
+    newServo: function(controller, lowerLimit, upperLimit, rate) {
+        return new Servo(controller, lowerLimit, upperLimit, rate)
+    },
+
+    newDefaultServo: function(lowerLimit, upperLimit, rate, position) {
+        var controller = (config.environment === "prod") ?
+            new PhysicalServoController(position) :
+            new VirtualServoController();
+
+        return new Servo(controller, lowerLimit, upperLimit, rate);
     }
 };
