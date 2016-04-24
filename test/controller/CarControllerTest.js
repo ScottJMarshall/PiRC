@@ -47,9 +47,9 @@ describe("CarController", function() {
         expect(servos.steering.center.calledOnce).to.be.true;
     });
 
-    it("provides position data for all servos", function() {
-        servos.throttle.position = 10;
-        servos.steering.position = 5;
+    it("provides angle data for all servos", function() {
+        servos.throttle.angle = 10;
+        servos.steering.angle = 5;
 
         var positions = controller.getTelemetry();
         expect(positions.throttle).to.equal(10);

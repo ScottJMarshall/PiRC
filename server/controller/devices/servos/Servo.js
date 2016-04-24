@@ -2,48 +2,53 @@ var config = require("../../../config.js");
 var PhysicalServoController = require("./PhysicalServoController.js");
 var VirtualServoController = require("./VirtualServoController.js");
 
-function Servo(controller, lowerLimit, upperLimit, rate) {
+function Servo(controller, lowerLimit, upperLimit, rate, position) {
     return {
-        position: 0,
+        angle: 0,
         center: function() {
             var tempRate = rate;
 
-            if (Math.abs(this.position) < rate) {
-                tempRate = this.position;
+            if (Math.abs(this.angle) < rate) {
+                tempRate = this.angle;
             }
 
-            if (this.position > 0) {
-                this.position -= tempRate;
-            } else if (this.position < 0) {
-                this.position += tempRate;
+            if (this.angle > 0) {
+                this.angle -= tempRate;
+            } else if (this.angle < 0) {
+                this.angle += tempRate;
             }
+
+            controller.setAngle(position, this.angle);
         },
         clockwise: function() {
-            this.position += rate;
-            if (this.position > upperLimit) {
-                this.position = upperLimit;
-            }
-        },
-        counterclockwise: function() {
-            this.position -= rate;
-            if (this.position < lowerLimit) {
-                this.position = lowerLimit;
+            this.angle += rate;
+            if (this.angle > upperLimit) {
+                this.angle = upperLimit;
             }
 
+            controller.setAngle(position, this.angle);
+        },
+        counterclockwise: function() {
+            this.angle -= rate;
+            if (this.angle < lowerLimit) {
+                this.angle = lowerLimit;
+            }
+            
+            controller.setAngle(position, this.angle);
         }
     }
 }
 
 module.exports = {
-    newServo: function(controller, lowerLimit, upperLimit, rate) {
-        return new Servo(controller, lowerLimit, upperLimit, rate)
+    newServo: function(controller, lowerLimit, upperLimit, rate, position) {
+        return new Servo(controller, lowerLimit, upperLimit, rate, position)
     },
 
     newDefaultServo: function(lowerLimit, upperLimit, rate, position) {
         var controller = (config.environment === "prod") ?
-            new PhysicalServoController(position) :
-            new VirtualServoController();
+            PhysicalServoController.newDefaultController() :
+            VirtualServoController.newDefaultController();
 
-        return new Servo(controller, lowerLimit, upperLimit, rate);
+        return new Servo(controller, lowerLimit, upperLimit, rate, position);
     }
 };

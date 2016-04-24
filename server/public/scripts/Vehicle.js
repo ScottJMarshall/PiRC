@@ -1,5 +1,5 @@
 /**
- * Contains telemetry data for the vehicle.  Currently only supports throttle and wheel position, but will be updated
+ * Contains telemetry data for the vehicle.  Currently only supports throttle and wheel angle, but will be updated
  * to report acceleration, GPS data, etc.
  */
 

@@ -68,7 +68,7 @@ function Controller(servos) {
                     continue;
                 }
 
-                result[servoName] = servos[servoName].position;
+                result[servoName] = servos[servoName].angle;
             }
 
             return result;
